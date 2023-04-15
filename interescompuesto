@@ -1,0 +1,21 @@
+def interes_compuesto(monto, tasa, plazo):
+    '''
+    Calcula el interés compuesto a partir del monto, la tasa de interés y el plazo.
+    
+    monto: monto inicial a depositar.
+    tasa: tasa de interés anual en tanto por ciento (por ejemplo, 5% se escribe como 5).
+    plazo: duración del depósito en años.
+    
+    Retorna el monto final obtenido después de aplicar el interés compuesto.
+    '''
+    # Convertir la tasa de interés de porcentaje a decimal
+    tasa_decimal = tasa / 100
+    
+    # Calcular el monto final con interés compuesto
+    monto_final = monto * (1 + tasa_decimal)**plazo
+    
+    return monto_final
+
+# ejemplo
+>>> interes_compuesto(1000, 5, 3)
+1157.625
