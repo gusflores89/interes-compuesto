@@ -1,21 +1,29 @@
-def interes_compuesto(monto, tasa, plazo):
-    '''
-    Calcula el interés compuesto a partir del monto, la tasa de interés y el plazo.
+def interes_compuesto(monto_inicial, tasa_anual, plazo_dias, periodo_rescate_dias):
+    # Convertir la tasa de interés anual a diaria
+    tasa_diaria = ((1 + tasa_anual/100)**(1/365)) - 1
     
-    monto: monto inicial a depositar.
-    tasa: tasa de interés anual en tanto por ciento (por ejemplo, 5% se escribe como 5).
-    plazo: duración del depósito en años.
+    # Calcular el número de rescates
+    num_rescates = plazo_dias // periodo_rescate_dias
     
-    Retorna el monto final obtenido después de aplicar el interés compuesto.
-    '''
-    # Convertir la tasa de interés de porcentaje a decimal
-    tasa_decimal = tasa / 100
+    # Inicializar el monto actual como el monto inicial
+    monto_actual = monto_inicial
     
-    # Calcular el monto final con interés compuesto
-    monto_final = monto * (1 + tasa_decimal)**plazo
+    # Calcular el interés compuesto después de cada rescate
+    for i in range(num_rescates):
+        # Rescatar el monto actual
+        monto_rescatado = monto_actual
+        
+        # Calcular el interés ganado durante el periodo de rescate
+        interes_ganado = monto_rescatado * (1 + tasa_diaria) ** periodo_rescate_dias - monto_rescatado
+        
+        # Actualizar el monto actual con el interés ganado
+        monto_actual += interes_ganado
+        
+    # Calcular el interés compuesto para el período restante
+    periodo_restante = plazo_dias - num_rescates * periodo_rescate_dias
+    monto_final = monto_actual * (1 + tasa_diaria) ** periodo_restante
     
     return monto_final
 
-# ejemplo
->>> interes_compuesto(1000, 5, 3)
-1157.625
+resultado = interes_compuesto(monto_inicial=, tasa_anual=, plazo_dias=, periodo_rescate_dias= )
+print("El monto final obtenido es: ", resultado)
