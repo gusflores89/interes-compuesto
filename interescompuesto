@@ -27,3 +27,4 @@ def interes_compuesto(monto_inicial, tasa_anual, plazo_dias, periodo_rescate_dia
 
 resultado = interes_compuesto(monto_inicial=, tasa_anual=, plazo_dias=, periodo_rescate_dias= )
 print("El monto final obtenido es: ", resultado)
+
